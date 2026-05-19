@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "Note": {
+      "title": "Note",
+      "description": "Une note technique ou un mémo de développement.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Le titre de la note"
+        },
+        "description": {
+          "type": "string",
+          "description": "Le contenu riche (Markdown, liens, code)"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "URL d'une image illustrative (optionnel)"
+        },
+        "link": {
+          "type": "string",
+          "description": "Lien de référence externe (documentation, source, etc.)"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "userId"
+      ]
+    },
+    "Folder": {
+      "title": "Folder",
+      "description": "Un dossier pour organiser les fichiers techniques.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "string",
+          "description": "ID du dossier parent (null pour la racine)"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["name", "userId"]
+    },
+    "File": {
+      "title": "File",
+      "description": "Une ressource ou un fichier technique.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "description": "Mime-type ou extension"
+        },
+        "size": {
+          "type": "number"
+        },
+        "folderId": {
+          "type": "string",
+          "description": "ID du dossier contenant"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["name", "url", "userId"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "google.com",
+      "password"
+    ]
+  },
+  "firestore": {
+    "/notes/{noteId}": {
+      "schema": {
+        "$ref": "#/backend/entities/Note"
+      },
+      "description": "Collection de vos notes techniques personnelles"
+    },
+    "/folders/{folderId}": {
+      "schema": {
+        "$ref": "#/backend/entities/Folder"
+      },
+      "description": "Dossiers pour l'organisation des fichiers"
+    },
+    "/files/{fileId}": {
+      "schema": {
+        "$ref": "#/backend/entities/File"
+      },
+      "description": "Fichiers et ressources techniques"
+    }
+  }
+}

@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-white: 240 10% 3.9%; /* Noir en mode clair */
+    --color-black: 0 0% 100%; /* Blanc en mode clair */
+    
+    --background: 0 0% 98%; /* Blanc cassé pour le fond */
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 1.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --color-white: 0 0% 100%; /* Blanc en mode sombre */
+    --color-black: 0 0% 0%; /* Noir en mode sombre */
+    
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --sidebar-background: 240 10% 2%;
+    --sidebar-foreground: 240 5% 64.9%;
+    --sidebar-primary: 0 0% 98%;
+    --sidebar-primary-foreground: 240 5.9% 10%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased selection:bg-foreground selection:text-background;
+    background-image: radial-gradient(at 0% 0%, rgba(113, 113, 122, 0.05) 0px, transparent 50%),
+                      radial-gradient(at 100% 100%, rgba(113, 113, 122, 0.05) 0px, transparent 50%);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight;
+  }
+}
+
+.glass {
+  @apply bg-background/60 backdrop-blur-2xl border border-white/5 shadow-sm;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.code-font {
+  font-family: 'Geist Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+}
+
+/* Styles d'impression pour PDF */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    background-image: none !important;
+  }
+
+  /* Masquer les éléments d'interface */
+  header, 
+  aside, 
+  nav, 
+  button, 
+  [data-sidebar], 
+  [data-sidebar-trigger],
+  .no-print,
+  .sidebar-provider > [data-sidebar],
+  .sidebar-inset > header {
+    display: none !important;
+  }
+
+  .sidebar-provider,
+  [class*="sidebar-wrapper"] {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .sidebar-inset {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    width: 100% !important;
+    min-height: auto !important;
+    display: block !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* Annuler le layout flex fixe et bloquant de la page Notes lors de l'impression */
+  div[class*="h-[calc(100dvh-"],
+  div[class*="h-[calc(100vh-"] {
+    display: block !important;
+    height: auto !important;
+    min-height: auto !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  div[class*="flex-1 w-full max-w-full"] {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Désactiver ScrollArea pour l'impression */
+  [data-radix-scroll-area-viewport],
+  div[class*="overflow-y-auto"],
+  div[class*="ScrollArea"] {
+    overflow: visible !important;
+    display: block !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  /* Ajuster le contenu de la note */
+  .note-print-container {
+    padding: 1.5cm !important;
+    background: white !important;
+    color: black !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .glass {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .text-zinc-300, .text-muted-foreground, .text-zinc-700 {
+    color: #1f2937 !important; /* zinc-800 approx */
+  }
+
+  .text-white {
+    color: black !important;
+  }
+
+  pre {
+    background: #f3f4f6 !important; /* gray-100 */
+    border: 1px solid #d1d5db !important;
+    color: #111827 !important;
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+    page-break-inside: avoid !important;
+  }
+
+  code {
+    background: #f3f4f6 !important;
+    color: #111827 !important;
+  }
+
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
