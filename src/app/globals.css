@@ -392,16 +392,17 @@
   position: sticky !important;
   top: 0 !important;
   z-index: 50 !important;
-  background: #6b34a5!important; 
-  border-bottom: 1px solid #e5e7eb !important;
+  background: transparent !important;
+  border-bottom: 1px solid rgba(226,232,240,0.9) !important; /* subtle divider */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+  padding: 6px 8px !important; /* keep toolbar compact */
 }
 
 [data-theme="dark"] ._toolbarRoot_uazmk_206,
 [data-theme="dark"] .mdxeditor-toolbar,
 [data-theme="dark"] [class*="_toolbarRoot"] {
-  background: #6b34a5 !important;
-  border-bottom-color: #1f2937 !important;
+  background: transparent !important;
+  border-bottom-color: rgba(51,65,85,0.9) !important;
 }
 
 /* Le conteneur principal de l'éditeur doit défiler en interne */
@@ -717,3 +718,609 @@ div[data-radix-popper-content-wrapper] > div,
     transform: scale(1) translateY(0);
   }
 }
+
+/* ========================================================
+   FileBrowser — Style Premium du Gestionnaire de Fichiers
+   ======================================================== */
+
+/* Conteneur principal */
+.file-browser,
+[class*="FileBrowser"],
+[class*="filebrowser"] {
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .file-browser,
+[data-theme="dark"] [class*="FileBrowser"],
+[data-theme="dark"] [class*="filebrowser"] {
+  border-color: #334155;
+  background: #0f172a;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.file-browser:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="dark"] .file-browser:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Barre d'outils & En-têtes (scoped to FileBrowser) ─── */
+.file-browser-toolbar,
+.file-browser-header,
+.file-browser-breadcrumb {
+  background: linear-gradient(135deg, #f8fafc 0%, #f0f4f8 100%);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.15s ease;
+}
+
+[data-theme="dark"] .file-browser-toolbar,
+[data-theme="dark"] .file-browser-header,
+[data-theme="dark"] .file-browser-breadcrumb {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-bottom-color: #334155;
+  color: #f1f5f9;
+}
+
+/* Breadcrumb Navigation (scoped) */
+.file-browser-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+[data-theme="dark"] .file-browser-breadcrumb::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.file-browser-breadcrumb button,
+.file-browser-breadcrumb [role="button"] {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.88rem;
+  white-space: nowrap;
+  transition: all 0.12s ease;
+  cursor: pointer;
+}
+
+.file-browser-breadcrumb button:hover {
+  background: rgba(122, 90, 248, 0.06);
+  color: #7a5af8;
+}
+
+[data-theme="dark"] .file-browser-breadcrumb button {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .file-browser-breadcrumb button:hover {
+  background: rgba(122, 90, 248, 0.12);
+  color: #a78bfa;
+}
+
+/* Boutons d'action */
+.file-browser button,
+[class*="file-action"],
+[class*="action-button"] {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.file-browser button:hover {
+  background: #f1f5f9;
+  color: #7a5af8;
+  border-color: #e2e8f0;
+}
+
+.file-browser button:active {
+  transform: scale(0.98);
+}
+
+[data-theme="dark"] .file-browser button {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .file-browser button:hover {
+  background: #1e293b;
+  color: #a78bfa;
+  border-color: #334155;
+}
+
+/* Boutons primaryaires */
+.file-browser button.primary,
+.file-browser button[data-primary="true"] {
+  background: linear-gradient(135deg, #7a5af8 0%, #6938ef 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(122, 90, 248, 0.3);
+}
+
+.file-browser button.primary:hover {
+  background: linear-gradient(135deg, #6938ef 0%, #5925dc 100%);
+  box-shadow: 0 6px 16px rgba(122, 90, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ─── Contenu Principal (Fichiers/Dossiers) ─── */
+.file-browser-content,
+.file-browser-body,
+[class*="content"],
+[class*="files-container"] {
+  padding: 16px;
+  overflow-y: auto;
+  max-height: calc(100vh - 300px);
+}
+
+.file-browser-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.file-browser-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.file-browser-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.file-browser-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+[data-theme="dark"] .file-browser-content::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+[data-theme="dark"] .file-browser-content::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ─── Éléments (Fichiers & Dossiers) ─── */
+.file-item,
+[class*="file-entry"],
+[class*="folder-entry"],
+.file-browser-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  margin: 4px 0;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 12px;
+}
+
+.file-item:hover {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.file-item.active,
+.file-item.selected {
+  background: linear-gradient(135deg, rgba(122, 90, 248, 0.08) 0%, rgba(122, 90, 248, 0.04) 100%);
+  border-color: #7a5af8;
+  box-shadow: 0 0 0 2px rgba(122, 90, 248, 0.1);
+}
+
+[data-theme="dark"] .file-item {
+  background: #1e293b;
+}
+
+[data-theme="dark"] .file-item:hover {
+  background: #0f172a;
+  border-color: #334155;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .file-item.active,
+[data-theme="dark"] .file-item.selected {
+  background: linear-gradient(135deg, rgba(122, 90, 248, 0.15) 0%, rgba(122, 90, 248, 0.08) 100%);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 2px rgba(122, 90, 248, 0.2);
+}
+
+/* Icônes de fichiers */
+.file-icon,
+[class*="icon"],
+.file-item svg {
+  font-size: 20px;
+  flex-shrink: 0;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.file-item:hover .file-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Nom de fichier & métadonnées */
+.file-name,
+[class*="name"],
+[class*="filename"] {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+  color: #0f172a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .file-name {
+  color: #f1f5f9;
+}
+
+.file-item:hover .file-name {
+  color: #7a5af8;
+}
+
+.file-size,
+.file-date,
+[class*="metadata"] {
+  color: #64748b;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .file-size,
+[data-theme="dark"] .file-date {
+  color: #cbd5e1;
+}
+
+/* ─── Menu Contextuel ─── */
+.file-context-menu,
+[class*="context-menu"],
+[role="menu"] {
+  position: fixed;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.12);
+  padding: 8px 0;
+  min-width: 200px;
+  z-index: 1000;
+  animation: context-menu-open 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] .file-context-menu,
+[data-theme="dark"] [class*="context-menu"],
+[data-theme="dark"] [role="menu"] {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.4);
+}
+
+[class*="context-menu"] button,
+[role="menu"] button,
+[role="menuitem"] {
+  width: 100%;
+  padding: 10px 16px;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+[data-theme="dark"] [class*="context-menu"] button,
+[data-theme="dark"] [role="menu"] button,
+[data-theme="dark"] [role="menuitem"] {
+  color: #f1f5f9;
+}
+
+[class*="context-menu"] button:hover,
+[role="menu"] button:hover,
+[role="menuitem"]:hover {
+  background: #f8fafc;
+  color: #7a5af8;
+}
+
+[data-theme="dark"] [class*="context-menu"] button:hover,
+[data-theme="dark"] [role="menu"] button:hover,
+[data-theme="dark"] [role="menuitem"]:hover {
+  background: #0f172a;
+  color: #a78bfa;
+}
+
+/* Danger actions (supprimer) */
+[class*="context-menu"] button.danger,
+[role="menu"] button.danger {
+  color: #ef4444;
+}
+
+[class*="context-menu"] button.danger:hover,
+[role="menu"] button.danger:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+[data-theme="dark"] [class*="context-menu"] button.danger:hover,
+[data-theme="dark"] [role="menu"] button.danger:hover {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* Séparateur */
+[class*="context-menu"] hr,
+[role="menu"] [role="separator"] {
+  margin: 4px 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+[data-theme="dark"] [class*="context-menu"] hr,
+[data-theme="dark"] [role="menu"] [role="separator"] {
+  border-top-color: #334155;
+}
+
+/* ─── Inputs & Recherche ─── */
+.file-browser input[type="text"],
+.file-browser input[type="search"],
+[class*="search-input"],
+[class*="rename-input"] {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
+  color: #0f172a;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.file-browser input[type="text"]:focus,
+.file-browser input[type="search"]:focus,
+[class*="search-input"]:focus,
+[class*="rename-input"]:focus {
+  outline: none;
+  border-color: #7a5af8;
+  box-shadow: 0 0 0 3px rgba(122, 90, 248, 0.1);
+  background: #f8fafc;
+}
+
+[data-theme="dark"] .file-browser input[type="text"],
+[data-theme="dark"] .file-browser input[type="search"],
+[data-theme="dark"] [class*="search-input"],
+[data-theme="dark"] [class*="rename-input"] {
+  border-color: #334155;
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .file-browser input[type="text"]:focus,
+[data-theme="dark"] .file-browser input[type="search"]:focus,
+[data-theme="dark"] [class*="search-input"]:focus,
+[data-theme="dark"] [class*="rename-input"]:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(122, 90, 248, 0.2);
+  background: #1e293b;
+}
+
+/* ─── États Spéciaux ─── */
+/* Vide */
+.file-browser-empty,
+[class*="empty-state"] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #94a3b8;
+}
+
+.file-browser-empty-icon,
+[class*="empty-icon"] {
+  font-size: 48px;
+  opacity: 0.4;
+  margin-bottom: 16px;
+}
+
+.file-browser-empty-text,
+[class*="empty-text"] {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+[data-theme="dark"] .file-browser-empty {
+  color: #64748b;
+}
+
+/* En cours de chargement */
+.file-browser-loading,
+[class*="loading"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* Drag & Drop */
+.file-browser.drag-over,
+[class*="drag-over"] {
+  background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%);
+  border-color: #7a5af8;
+  box-shadow: inset 0 0 0 2px #7a5af8;
+}
+
+[data-theme="dark"] .file-browser.drag-over,
+[data-theme="dark"] [class*="drag-over"] {
+  background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+  border-color: #8b5cf6;
+  box-shadow: inset 0 0 0 2px #8b5cf6;
+}
+
+/* ─── Barres de Statut/Footer ─── */
+.file-browser-footer,
+.file-browser-status,
+[class*="status-bar"] {
+  padding: 12px 16px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+  font-size: 0.85rem;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+[data-theme="dark"] .file-browser-footer,
+[data-theme="dark"] .file-browser-status,
+[data-theme="dark"] [class*="status-bar"] {
+  border-top-color: #334155;
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+/* ─── Animations ─── */
+@keyframes context-menu-open {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes file-item-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Animations au hover */
+.file-item {
+  animation: none;
+}
+
+.file-item:hover {
+  animation: file-item-bounce 0.4s ease;
+}
+
+/* ─── États de Upload/Téléchargement ─── */
+[class*="progress"] {
+  width: 100%;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] [class*="progress"] {
+  background: #334155;
+}
+
+[class*="progress-bar"] {
+  height: 100%;
+  background: linear-gradient(90deg, #7a5af8 0%, #6938ef 100%);
+  border-radius: 2px;
+  animation: progress-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes progress-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .file-browser-toolbar {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  .file-item {
+    padding: 8px 10px;
+  }
+
+  .file-context-menu,
+  [class*="context-menu"] {
+    min-width: 180px;
+  }
+
+  .file-browser-content {
+    max-height: calc(100vh - 250px);
+  }
+
+  [class*="metadata"] {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .file-browser {
+    border-radius: 12px;
+  }
+
+  .file-browser-toolbar {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .file-item {
+    padding: 6px 8px;
+  }
+
+  .file-name {
+    font-size: 0.9rem;
+  }
+
+  .file-browser-breadcrumb button {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+  }
+}
+
+
+

@@ -9,6 +9,8 @@ import {
   uploadFile,
   deleteFileDoc,
   deleteFolder,
+  moveFileToFolder,
+  moveFolderToParent,
   Folder,
   FileData,
 } from "@/lib/firebase/services/files";
@@ -130,6 +132,28 @@ export default function FilesPage() {
     fileInputRef.current?.click();
   };
 
+  const handleMoveItems = async (itemIds: string[], isDirFlags: boolean[], targetFolderId: string | null) => {
+    if (!user) return;
+    setLoading(true);
+    try {
+      for (let i = 0; i < itemIds.length; i++) {
+        const id = itemIds[i];
+        const isDir = isDirFlags[i];
+        if (isDir) {
+          await moveFolderToParent(id, targetFolderId ?? null);
+        } else {
+          await moveFileToFolder(id, targetFolderId ?? null);
+        }
+      }
+      await fetchData();
+    } catch (error) {
+      console.error("Erreur lors du déplacement", error);
+      alert("Erreur lors du déplacement des éléments.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Convert Firebase folders/files to BrowserFile array
   const browserFiles = useMemo<BrowserFile[]>(() => {
     const foldersInCurrent = allFolders.filter(
@@ -238,6 +262,7 @@ export default function FilesPage() {
           onFolderOpen={handleFolderOpen}
           onDownloadFiles={handleDownloadFiles}
           onDeleteFiles={handleDeleteFiles}
+            onMoveItems={handleMoveItems}
           onCreateFolder={() => setShowNewFolderModal(true)}
           onUploadFiles={handleUploadFilesClick}
         />
