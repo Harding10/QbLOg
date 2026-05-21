@@ -34,7 +34,7 @@ N'hésitez pas à modifier ce texte ou à en écrire un nouveau pour essayer la 
   };
 
   return (
-    <div className="space-y-6 px-5 md:px-12 pt-10 pb-32">
+    <div className="flex-1 overflow-y-auto space-y-6 px-5 md:px-12 pt-10 pb-32">
       
       {/* En-tête de la page */}
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

@@ -192,7 +192,7 @@ export default function NoteEditorPage({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="w-full space-y-6 px-5 pt-10 pb-32">
+    <div className="w-full flex-1 overflow-y-auto space-y-6 px-5 pt-10 pb-32">
       {/* Top bar (Header) */}
       <div className="flex items-center justify-between bg-white dark:bg-dark-primary p-4 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
         <Link 

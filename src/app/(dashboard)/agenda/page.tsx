@@ -160,7 +160,7 @@ export default function AgendaPage() {
   if (loading) return <div className="flex justify-center p-12"><div className="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500"></div></div>;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 px-5 md:px-12 pt-10 pb-32">
+    <div className="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-4 gap-6 px-5 md:px-12 pt-10 pb-32">
       <div className="lg:col-span-3 space-y-6">
         <header className="flex justify-between items-center bg-white dark:bg-dark-primary p-4 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm">
           <div className="flex items-center gap-4">
