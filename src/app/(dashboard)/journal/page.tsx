@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import { getUserNotes, getUserTags, createNote, updateNote, Note, Tag } from "@/lib/firebase/services/notes";
 import { Plus, Search, Star, Clock, Bug, FileJson, Calendar as CalendarIcon, Tag as TagIcon, BookOpen, Sparkles, X, Check } from "lucide-react";
 import { TagBadge } from "@/components/ui/TagBadge";
+import HamsterLoader from "@/components/ui/HamsterLoader";
 import { useRouter } from "next/navigation";
 
 export default function JournalPage() {

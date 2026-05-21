@@ -31,7 +31,7 @@ export default function GeneratorInput({
       <div className="h-4" />
 
       <div
-        className="bg-white/15 dark:bg-white/5 border border-[#E4E7EC] dark:border-white/10 rounded-3xl backdrop-blur-[10px] shadow-theme-md overflow-hidden aria-disabled:opacity-70 aria-disabled:pointer-events-none"
+        className="bg-white/15 dark:bg-white/5 rounded-3xl backdrop-blur-[10px] shadow-theme-md overflow-hidden aria-disabled:opacity-70 aria-disabled:pointer-events-none"
         aria-disabled={disabled}
       >
         <div className="p-5 pb-0 pr-[calc((var(--spacing)*5)-10px)]">
@@ -68,7 +68,7 @@ export default function GeneratorInput({
           <button
             type="submit"
             ref={submitButtonRef}
-            className="size-10 flex bg-[#1D2939] dark:bg-primary-500 dark:disabled:bg-white/20 transition items-center justify-center rounded-full text-white"
+            className="size-10 flex bg-primary-500/80 hover:bg-primary-500 dark:bg-primary-500 dark:disabled:bg-white/20 transition items-center justify-center rounded-full text-white"
             disabled={!value?.trim()}
           >
             <span className="sr-only">Submit</span>

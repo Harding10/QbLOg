@@ -21,7 +21,7 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="lg:hidden h-screen absolute top-full bg-white dark:bg-dark-primary w-full border-b border-gray-200 dark:border-gray-800">
+    <div className="lg:hidden h-screen absolute top-full z-[9999] bg-white dark:bg-dark-primary w-full border-b border-gray-200 dark:border-gray-800">
       <div className="flex flex-col justify-between">
         <div className="flex-1 overflow-y-auto">
           <div className="pt-2 pb-3 space-y-1 px-4 sm:px-6">

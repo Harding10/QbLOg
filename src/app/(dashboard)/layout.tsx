@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
 import GeneratorWrapper from "@/components/generator/generator-wrapper";
+import HamsterLoader from "@/components/ui/HamsterLoader";
 
 function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -21,7 +22,7 @@ function DashboardLayoutContent({ children }: { children: React.ReactNode }) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-dark-primary text-gray-800 dark:text-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500"></div>
+        <HamsterLoader />
       </div>
     );
   }

@@ -14,7 +14,7 @@ export default function GeneratorHeader({
   sidebarOpen: boolean;
 }) {
   return (
-    <header className="bg-white dark:bg-dark-primary border-b dark:border-gray-800 border-gray-100 sticky top-0 z-50 py-2 lg:py-4">
+    <header className="bg-white dark:bg-dark-primary border-b dark:border-gray-800 border-gray-100 sticky top-0 z-[9999] py-2 lg:py-4">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
           <div className="flex">
@@ -23,7 +23,7 @@ export default function GeneratorHeader({
               <button
                 aria-label="Toggle left sidebar"
                 onClick={toggleSidebar}
-                className="rounded-md text-gray-400 lg:hidden"
+                className="relative z-[10000] rounded-md text-gray-400 lg:hidden"
               >
                 {sidebarOpen ? (
                   <CloseIcon className="size-6" />
@@ -61,7 +61,7 @@ export default function GeneratorHeader({
             <button
               onClick={toggleRightSidebar}
               type="button"
-              className="inline-flex xl:hidden items-center dark:hover:bg-white/5 dark:hover:text-white/90 hover:bg-gray-100 hover:text-gray-800 text-gray-500 dark:text-gray-400 justify-center border border-gray-200 dark:border-gray-700 rounded-full size-11"
+              className="relative z-[10000] inline-flex xl:hidden items-center dark:hover:bg-white/5 dark:hover:text-white/90 hover:bg-gray-100 hover:text-gray-800 text-gray-500 dark:text-gray-400 justify-center border border-gray-200 dark:border-gray-700 rounded-full size-11"
             >
               <span className="sr-only">Open right sidebar</span>
               <svg
