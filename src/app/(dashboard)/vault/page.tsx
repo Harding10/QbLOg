@@ -67,7 +67,7 @@ export default function VaultPage() {
   );
 
   return (
-    <div className="space-y-6 px-5 md:px-12 pt-10 pb-32">
+    <div className="flex-1 overflow-y-auto space-y-6 px-5 md:px-12 pt-10 pb-32">
       <header className="flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-tight">Code Vault</h1>

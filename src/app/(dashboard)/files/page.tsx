@@ -201,7 +201,7 @@ export default function FilesPage() {
   }, [allFolders, currentFolderId]);
 
   return (
-    <div className="space-y-6 px-5 md:px-12 pt-10 pb-32">
+    <div className="flex-1 overflow-y-auto space-y-6 px-5 md:px-12 pt-10 pb-32">
       {/* Header */}
       <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>

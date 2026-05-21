@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { getUserNotes, getUserTags, createNote, updateNote, Note, Tag } from "@/lib/firebase/services/notes";
-import { Plus, Search, Star, Clock, Bug, FileJson, Calendar as CalendarIcon, Tag as TagIcon, BookOpen, Sparkles, X, Check } from "lucide-react";
+import { Plus, Search, Star, Clock, Bug, FileJson, Calendar as CalendarIcon, Tag as TagIcon, BookOpen, Sparkles, X, Check, ChevronDown } from "lucide-react";
 import { TagBadge } from "@/components/ui/TagBadge";
 import HamsterLoader from "@/components/ui/HamsterLoader";
 import { useRouter } from "next/navigation";
@@ -17,6 +17,20 @@ export default function JournalPage() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [isTagDropdownOpen, setIsTagDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsTagDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // États pour le modal de création
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -98,12 +112,20 @@ export default function JournalPage() {
     );
   };
 
-  const filteredNotes = notes.filter((note) => {
-    const matchesSearch = (note.title || "").toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          (note.content || "").toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesTag = selectedTag ? note.tags?.includes(selectedTag) : true;
-    return matchesSearch && matchesTag;
-  });
+  const filteredNotes = notes
+    .filter((note) => {
+      const matchesSearch = (note.title || "").toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            (note.content || "").toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesTag = selectedTag ? note.tags?.includes(selectedTag) : true;
+      return matchesSearch && matchesTag;
+    })
+    .sort((a, b) => {
+      if (a.isFavorite && !b.isFavorite) return -1;
+      if (!a.isFavorite && b.isFavorite) return 1;
+      return 0;
+    });
+
+  const activeTag = tags.find(tag => tag.id === selectedTag);
 
   const getTemplateIcon = (type: Note['templateType']) => {
     switch (type) {
@@ -130,7 +152,7 @@ export default function JournalPage() {
   }
 
   return (
-    <div className="space-y-6 px-5 md:px-12 pt-10 pb-32">
+    <div className="flex-1 overflow-y-auto space-y-6 px-5 md:px-12 pt-10 pb-32">
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-gray-800 dark:text-white">Journal Tech</h1>
@@ -157,28 +179,65 @@ export default function JournalPage() {
             className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-dark-primary border border-gray-200 dark:border-gray-800 rounded-xl text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all placeholder:text-gray-400"
           />
         </div>
-        <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-thin">
+        <div className="relative w-full sm:w-60" ref={dropdownRef}>
           <button
-            onClick={() => setSelectedTag(null)}
-            className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
-              selectedTag === null ? "bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 border-primary-200 dark:border-primary-500/30" : "bg-white dark:bg-dark-primary text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-white/5"
-            }`}
+            onClick={() => setIsTagDropdownOpen(!isTagDropdownOpen)}
+            className="flex items-center justify-between gap-2.5 w-full px-4 py-2.5 bg-white dark:bg-dark-primary border border-gray-200 dark:border-gray-800 rounded-xl text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all text-sm font-semibold hover:bg-gray-50 dark:hover:bg-white/5 cursor-pointer shadow-sm"
           >
-            Tous
+            <div className="flex items-center gap-2 truncate">
+              {activeTag ? (
+                <>
+                  <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: activeTag.color }} />
+                  <span className="truncate">{activeTag.name}</span>
+                </>
+              ) : (
+                <>
+                  <TagIcon className="w-4 h-4 text-gray-400 shrink-0" />
+                  <span>Tous les tags</span>
+                </>
+              )}
+            </div>
+            <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 shrink-0 ${isTagDropdownOpen ? 'rotate-180' : ''}`} />
           </button>
-          {tags.map((tag) => (
-            <button
-              key={tag.id}
-              onClick={() => setSelectedTag(selectedTag === tag.id ? null : tag.id!)}
-              className={`flex-shrink-0 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 border ${
-                selectedTag === tag.id
-                  ? "bg-primary-50 dark:bg-primary-500/10 text-primary-600 dark:text-primary-400 border-primary-200 dark:border-primary-500/30"
-                  : "bg-white dark:bg-dark-primary text-gray-500 dark:text-gray-400 border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-white/5"
-              }`}
-            >
-              {tag.name}
-            </button>
-          ))}
+
+          {isTagDropdownOpen && (
+            <div className="absolute right-0 mt-2 w-full sm:w-64 bg-white dark:bg-dark-primary border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl py-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-200 backdrop-blur-md dark:bg-dark-primary/95">
+              <button
+                onClick={() => {
+                  setSelectedTag(null);
+                  setIsTagDropdownOpen(false);
+                }}
+                className="w-full flex items-center justify-between px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left font-medium cursor-pointer"
+              >
+                <span className="flex items-center gap-2">
+                  <TagIcon className="w-4 h-4 text-gray-400" />
+                  Tous les tags
+                </span>
+                {selectedTag === null && <Check className="w-4 h-4 text-primary-500" />}
+              </button>
+              
+              {tags.length > 0 && <div className="border-t border-gray-100 dark:border-gray-800/80 my-1.5" />}
+              
+              <div className="max-h-60 overflow-y-auto scrollbar-thin">
+                {tags.map((tag) => (
+                  <button
+                    key={tag.id}
+                    onClick={() => {
+                      setSelectedTag(tag.id!);
+                      setIsTagDropdownOpen(false);
+                    }}
+                    className="w-full flex items-center justify-between px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-left font-medium cursor-pointer"
+                  >
+                    <span className="flex items-center gap-2 truncate">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: tag.color }} />
+                      <span className="truncate">{tag.name}</span>
+                    </span>
+                    {selectedTag === tag.id && <Check className="w-4 h-4 text-primary-500 font-bold" />}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
