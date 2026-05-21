@@ -12,7 +12,8 @@ import {
   CalendarDays,
   Settings,
   LogOut,
-  Sparkles
+  Sparkles,
+  Flame
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
   { name: "Suivi des Bugs", href: "/bugs", icon: Bug },
   { name: "Code Vault", href: "/vault", icon: Code },
   { name: "Agenda", href: "/agenda", icon: CalendarDays },
+  { name: "Suivi des Addictions", href: "/addictions", icon: Flame },
 ];
 
 export function Sidebar() {
