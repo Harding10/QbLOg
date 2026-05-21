@@ -3,28 +3,17 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  LayoutDashboard, 
-  BookOpen, 
-  FolderOpen, 
-  Bug, 
-  Code, 
-  CalendarDays,
-  Settings,
-  LogOut,
-  Sparkles,
-  Flame
-} from "lucide-react";
+import { LogOut } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 
 const NAV_ITEMS = [
-  { name: "Tableau de bord", href: "/dashboard", icon: LayoutDashboard },
-  { name: "Journal Tech", href: "/journal", icon: BookOpen },
-  { name: "Fichiers", href: "/files", icon: FolderOpen },
-  { name: "Suivi des Bugs", href: "/bugs", icon: Bug },
-  { name: "Code Vault", href: "/vault", icon: Code },
-  { name: "Agenda", href: "/agenda", icon: CalendarDays },
-  { name: "Suivi des Addictions", href: "/addictions", icon: Flame },
+  { name: "Tableau de bord", href: "/dashboard", icon: "/images/menu_droit_icon/tableau.webp" },
+  { name: "Journal Tech", href: "/journal", icon: "/images/menu_droit_icon/journal.webp" },
+  { name: "Fichiers", href: "/files", icon: "/images/menu_droit_icon/fichers.png" },
+  { name: "Suivi des Bugs", href: "/bugs", icon: "/images/menu_droit_icon/bugs.webp" },
+  { name: "Code Vault", href: "/vault", icon: "/images/menu_droit_icon/code.webp" },
+  { name: "Agenda", href: "/agenda", icon: "/images/menu_droit_icon/aganda.webp" },
+  { name: "Suivi des Addictions", href: "/addictions", icon: "/images/menu_droit_icon/adition.webp" },
 ];
 
 export function Sidebar() {
@@ -55,9 +44,11 @@ export function Sidebar() {
                   : "text-slate-400 hover:bg-white/5 hover:text-white"
               }`}
             >
-              <item.icon
+              <img
+                src={item.icon}
+                alt={item.name}
                 className={`flex-shrink-0 w-5 h-5 mr-3 transition-colors ${
-                  isActive ? "text-white" : "text-slate-500 group-hover:text-blue-400"
+                  isActive ? "" : "opacity-60 group-hover:opacity-100"
                 }`}
               />
               {item.name}
