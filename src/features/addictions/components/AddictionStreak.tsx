@@ -45,7 +45,7 @@ export function AddictionStreak({ currentStreak, bestStreak }: AddictionStreakPr
             >
               <Flame className={`w-8 h-8 bg-gradient-to-br ${getStreakColor(currentStreak)} bg-clip-text text-transparent`} />
             </motion.div>
-            <span className={`${getStreakSize(currentStreak)} font-black text-gray-900 dark:text-white`}>
+            <span className={`${getStreakSize(currentStreak)} font-white text-gray-900 dark:text-white`}>
               {currentStreak}
             </span>
             <span className="text-sm text-gray-500 dark:text-gray-400">

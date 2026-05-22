@@ -316,7 +316,7 @@ export default function JournalPage() {
                       {note.templateType === 'api' && <FileJson className="w-3.5 h-3.5" />}
                       {note.templateType === 'daily' && <CalendarIcon className="w-3.5 h-3.5" />}
                       {!note.templateType && <BookOpen className="w-3.5 h-3.5" />}
-                      <span className="text-[10px] font-black uppercase tracking-wider">{categoryLabel}</span>
+                      <span className="text-[10px] font-white uppercase tracking-wider">{categoryLabel}</span>
                     </div>
                     
                     {/* Favori Button */}
@@ -338,7 +338,7 @@ export default function JournalPage() {
 
                 {/* Bottom Section */}
                 <div className="mt-4 px-1 py-2.5 flex-1 flex flex-col justify-between">
-                  <span className="block text-center text-[15px] font-black uppercase tracking-[2.5px] text-white truncate max-w-full px-2 group-hover:text-primary-400 transition-colors">
+                  <span className="block text-center text-[15px] font-white uppercase tracking-[2.5px] text-white truncate max-w-full px-2 group-hover:text-primary-400 transition-colors">
                     {note.title || "NOTE SANS TITRE"}
                   </span>
                   
@@ -373,7 +373,7 @@ export default function JournalPage() {
 
       {/* Modal Premium de Création */}
       {isCreateModalOpen && (
-        <div className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-gray-900/60 dark:bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div 
             className="bg-white dark:bg-dark-primary rounded-3xl w-full max-w-2xl border border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}

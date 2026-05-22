@@ -73,7 +73,7 @@ export function BugDashboard() {
       {/* Page Header */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-gray-800 dark:text-white tracking-tight">
+          <h1 className="text-3xl font-white text-gray-800 dark:text-white tracking-tight">
             Suivi des Bugs
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">

@@ -276,7 +276,7 @@ export default function NoteEditorPage({ params }: { params: Promise<{ id: strin
 
                 {showTagMenu && (
                   <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-dark-primary border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl z-20 overflow-hidden">
-                    <div className="p-2 border-b border-gray-100 dark:border-gray-800 flex gap-2 bg-gray-50 dark:bg-black/20">
+                    <div className="p-2 border-b border-gray-100 dark:border-gray-800 flex gap-2 bg-gray-50 dark:bg-white/20">
                       <input
                         type="text"
                         value={newTagInput}

@@ -80,7 +80,7 @@ export default function NotFoundPage() {
           className="mb-10 hidden dark:block"
           alt=""
         />
-        <h1 className="text-4xl font-black text-gray-800 mb-2 dark:text-white/90">
+        <h1 className="text-4xl font-white text-gray-800 mb-2 dark:text-white/90">
           OPPS! Page Not Found
         </h1>
         <p className="text-gray-500 text-base dark:text-gray-400">

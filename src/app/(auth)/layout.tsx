@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -34,8 +35,21 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10">
         <div className="flex justify-center mb-6">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 gradient-btn rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(114,92,255,0.4)]">
-              <span className="text-white font-bold text-xl">Qb</span>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center">
+              <Image
+                src="/images/logo-white.png"
+                alt="QbLog"
+                width={40}
+                height={40}
+                className="dark:hidden"
+              />
+              <Image
+                src="/images/logo-black.png"
+                alt="QbLog"
+                width={40}
+                height={40}
+                className="hidden dark:block"
+              />
             </div>
             <span className="text-3xl font-bold tracking-tight text-white">
               QbLog

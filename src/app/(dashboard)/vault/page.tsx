@@ -114,7 +114,7 @@ export default function VaultPage() {
                 </button>
               </div>
             </div>
-            <div className="bg-gray-50 dark:bg-black/50 rounded-xl p-4 overflow-y-auto flex-1 border border-gray-200 dark:border-gray-800">
+            <div className="bg-gray-50 dark:bg-white/50 rounded-xl p-4 overflow-y-auto flex-1 border border-gray-200 dark:border-gray-800">
               <pre className="text-sm text-gray-800 dark:text-gray-300 font-mono">
                 <code>{snippet.code}</code>
               </pre>
@@ -132,7 +132,7 @@ export default function VaultPage() {
       </div>
 
       {showNewModal && (
-        <div className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-gray-900/60 dark:bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-dark-primary rounded-2xl w-full max-w-2xl border border-gray-200 dark:border-gray-800 shadow-2xl p-6">
             <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-6">Nouveau Snippet</h2>
             <form onSubmit={handleCreate} className="space-y-4">
@@ -148,7 +148,7 @@ export default function VaultPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Code</label>
-                <textarea required rows={8} value={newSnippet.code} onChange={e => setNewSnippet({...newSnippet, code: e.target.value})} className="w-full rounded-xl bg-gray-50 dark:bg-black/50 border border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white p-2.5 font-mono text-sm focus:border-primary-500 focus:outline-none" />
+                <textarea required rows={8} value={newSnippet.code} onChange={e => setNewSnippet({...newSnippet, code: e.target.value})} className="w-full rounded-xl bg-gray-50 dark:bg-white/50 border border-gray-200 dark:border-gray-800 text-gray-800 dark:text-white p-2.5 font-mono text-sm focus:border-primary-500 focus:outline-none" />
               </div>
               <div className="flex justify-end gap-3 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <button type="button" onClick={() => setShowNewModal(false)} className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white transition-colors">Annuler</button>

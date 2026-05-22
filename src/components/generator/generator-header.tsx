@@ -35,7 +35,7 @@ export default function GeneratorHeader({
               <div className="flex items-center">
                 <Link href="/">
                   <Image
-                    src="/images/logo-black.png"
+                    src="/images/logo-white.png"
                     className="block dark:hidden object-contain h-8 w-auto"
                     width={2500}
                     height={68}

@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     }
 
     const result = streamText({
-      model: AI_MODEL,
+      model: AI_MODEL as any,
       system: PROMPT,
       messages,
       experimental_generateMessageId: createIdGenerator({

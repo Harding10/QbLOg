@@ -23,7 +23,7 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/" className="flex items-end gap-2">
               <Image
-                src="/images/logo-black.png"
+                src="/images/logo-white.png"
                 className="block dark:hidden object-contain h-8 w-auto"
                 alt="AiStarterKit Logo"
                 width={140}

@@ -111,7 +111,7 @@ export function BugFormModal({ isOpen, onClose, onSubmit, editBug }: BugFormModa
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-white/60 backdrop-blur-sm z-50"
           />
 
           {/* Modal */}
@@ -122,7 +122,7 @@ export function BugFormModal({ isOpen, onClose, onSubmit, editBug }: BugFormModa
             transition={{ type: "spring" as const, damping: 25, stiffness: 300 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none"
           >
-            <div className="pointer-events-auto bg-[#0d1117] rounded-2xl w-full max-w-lg border border-white/[0.06] shadow-2xl shadow-black/40 overflow-hidden flex flex-col max-h-[90vh]">
+            <div className="pointer-events-auto bg-[#0d1117] rounded-2xl w-full max-w-lg border border-white/[0.06] shadow-2xl shadow-white/40 overflow-hidden flex flex-col max-h-[90vh]">
               {/* Header */}
               <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between">
                 <h2 className="text-[15px] font-semibold text-white tracking-tight">
@@ -256,7 +256,7 @@ export function BugFormModal({ isOpen, onClose, onSubmit, editBug }: BugFormModa
                         <button
                           type="button"
                           onClick={() => setScreenshotUrl(null)}
-                          className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
+                          className="absolute inset-0 bg-white/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity"
                         >
                           <X className="w-3.5 h-3.5 text-white" />
                         </button>

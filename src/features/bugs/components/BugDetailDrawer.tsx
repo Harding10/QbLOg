@@ -91,7 +91,7 @@ export function BugDetailDrawer({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-white/60 backdrop-blur-sm z-40"
           />
 
           {/* Drawer */}
@@ -100,7 +100,7 @@ export function BugDetailDrawer({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring" as const, damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 bottom-0 w-full sm:w-[520px] md:w-[720px] lg:w-[900px] bg-[#0d1117] border-l border-white/[0.04] shadow-2xl shadow-black/50 z-50 flex flex-col overflow-hidden"
+            className="fixed right-0 top-0 bottom-0 w-full sm:w-[520px] md:w-[720px] lg:w-[900px] bg-[#0d1117] border-l border-white/[0.04] shadow-2xl shadow-white/50 z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="px-6 py-4 border-b border-white/[0.04] flex items-center justify-between shrink-0">

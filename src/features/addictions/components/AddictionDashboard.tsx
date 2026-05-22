@@ -70,7 +70,7 @@ export function AddictionDashboard() {
       <div className="space-y-6">
         <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-black text-gray-800 dark:text-white tracking-tight">
+            <h1 className="text-3xl font-white text-gray-800 dark:text-white tracking-tight">
               Suivi des Addictions
             </h1>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
@@ -120,7 +120,7 @@ export function AddictionDashboard() {
       {/* Page Header */}
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-gray-800 dark:text-white tracking-tight">
+          <h1 className="text-3xl font-white text-gray-800 dark:text-white tracking-tight">
             Suivi des Addictions
           </h1>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">

@@ -101,10 +101,10 @@ export function BugCommandPalette({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-xs z-50 flex items-start justify-center pt-[15vh] px-4">
+    <div className="fixed inset-0 bg-gray-900/60 dark:bg-white/60 backdrop-blur-xs z-50 flex items-start justify-center pt-[15vh] px-4">
       <div className="bg-white dark:bg-[#131b2e] w-full max-w-lg rounded-2xl border border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden flex flex-col max-h-[50vh]">
         {/* Search Input */}
-        <div className="flex items-center border-b border-gray-150 dark:border-gray-800 px-4 py-3 bg-gray-50/50 dark:bg-black/10">
+        <div className="flex items-center border-b border-gray-150 dark:border-gray-800 px-4 py-3 bg-gray-50/50 dark:bg-white/10">
           <Search className="w-4 h-4 text-gray-400 mr-3 shrink-0" />
           <input
             ref={inputRef}
@@ -147,7 +147,7 @@ export function BugCommandPalette({
                     </div>
                   </div>
                   {isSelected && (
-                    <span className="text-[10px] uppercase tracking-wider text-primary-500 dark:text-primary-400 font-black">
+                    <span className="text-[10px] uppercase tracking-wider text-primary-500 dark:text-primary-400 font-white">
                       Entrée
                     </span>
                   )}

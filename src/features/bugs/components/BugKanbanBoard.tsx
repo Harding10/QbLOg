@@ -101,7 +101,7 @@ export function BugKanbanBoard({ bugs, onSelectBug, onUpdateStatus }: BugKanbanB
                         exit={{ opacity: 0, scale: 0.95 }}
                         transition={{ type: "spring" as const, damping: 25, stiffness: 300 }}
                         onClick={() => onSelectBug(bug.id!)}
-                        className="group relative overflow-hidden rounded-xl border border-white/[0.04] bg-[#161b22]/80 hover:bg-[#1c2333] p-3.5 transition-all duration-200 cursor-pointer hover:border-white/[0.08] hover:shadow-lg hover:shadow-black/20 active:scale-[0.98]"
+                        className="group relative overflow-hidden rounded-xl border border-white/[0.04] bg-[#161b22]/80 hover:bg-[#1c2333] p-3.5 transition-all duration-200 cursor-pointer hover:border-white/[0.08] hover:shadow-lg hover:shadow-white/20 active:scale-[0.98]"
                       >
                         {/* Hover glow */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

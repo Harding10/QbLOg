@@ -103,7 +103,7 @@ export function BugStats({ bugs }: BugStatsProps) {
               </div>
             </div>
 
-            <div className={`text-3xl font-black tracking-tight text-white mb-1`}>
+            <div className={`text-3xl font-white tracking-tight text-white mb-1`}>
               {stat.value}
             </div>
 

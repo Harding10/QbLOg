@@ -77,7 +77,7 @@ export function AddictionStats({ stats }: AddictionStatsProps) {
               {card.title}
             </span>
           </div>
-          <div className="text-3xl font-black text-gray-900 dark:text-white">
+          <div className="text-3xl font-white text-gray-900 dark:text-white">
             {card.value}
           </div>
         </div>

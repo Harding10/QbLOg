@@ -234,7 +234,7 @@ export default function AgendaPage() {
 
       {/* Modal Ajout */}
       {showNewModal && (
-        <div className="fixed inset-0 bg-gray-900/60 dark:bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-gray-900/60 dark:bg-white/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-dark-primary rounded-2xl w-full max-w-md border border-gray-200 dark:border-gray-800 shadow-2xl p-6">
             <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-2">Nouvel Événement</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Pour le {format(selectedDate, "d MMMM yyyy", { locale: fr })}</p>

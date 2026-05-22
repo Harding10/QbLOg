@@ -1,5 +1,7 @@
-import { openai } from '@ai-sdk/openai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 
-export const AI_MODEL = openai('gpt-4o-mini', {
-  structuredOutputs: true,
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENAI_API_KEY || '',
 });
+
+export const AI_MODEL = google('gemini-1.5-flash');

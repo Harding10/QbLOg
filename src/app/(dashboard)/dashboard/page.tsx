@@ -23,7 +23,7 @@ export default function Page() {
       {chatHandler.messages.length === 0 ? (
         <div className="flex-1 overflow-y-auto px-5 md:px-12 pt-10 pb-32">
           <header className="mb-12">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-50">
+            <h1 className="text-4xl font-bold tracking-tight text-white/90">
               👋 Bonjour, {user?.displayName || "YOYO"} !
             </h1>
           </header>
