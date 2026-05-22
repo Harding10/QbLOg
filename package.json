@@ -19,7 +19,7 @@
     "@ai-sdk/react": "^1.2.8",
     "@hookform/resolvers": "^5.0.1",
     "@mdxeditor/editor": "^4.0.0",
-    "ai": "^4.3.5",
+    "ai": "^5.0.52",
     "chonky": "^2.3.2",
     "chonky-icon-fontawesome": "^2.3.2",
     "clsx": "^2.1.1",
